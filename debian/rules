@@ -1,11 +1,17 @@
+#!/usr/bin/make -f
+
 %:
-    dh $@
+	dh $@
 
 override_dh_auto_configure:
-    cmake ${SRC_DIR} ${CMAKE_ARGS}
+	mkdir -p deb-build && cd deb-build && cmake ..
 
 override_dh_auto_build:
-    make
+	$(MAKE) -C deb-build
 
 override_dh_auto_install:
-    make install DESTDIR=$(CURDIR)/debian/mypackage
+	$(MAKE) -C deb-build DESTDIR=$(CURDIR)/debian/reduce install
+
+override_dh_usrlocal:
+	mkdir -p $(CURDIR)/debian/reduce/usr/local
+	cp reduce_wwPDB_het_dict.txt $(CURDIR)/debian/reduce/usr/local/
