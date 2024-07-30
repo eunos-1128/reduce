@@ -3,3 +3,9 @@
 *.a
 *.o
 reduce_src/reduce
+
+debian/
+DEBIAN/
+build/
+
+!debian/{control,copyright,changelog,rules}
