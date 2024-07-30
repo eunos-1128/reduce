@@ -1,208 +1,88 @@
-History: this new version of reduce has been completely re-written
-  to include het groups and rotations
+reduce (4.14-1) unstable; urgency=medium
+  * Fixed gap bug introduced in version 4.11.
+  * Reverted the gap bug 'fix' from 4.11, going back to 4.7.
+  * Added support for building alongside the native CCTBX reduce2 library.
 
-10/ 1/97 - jmw - changed rotation score to dot score, modified geometry,
-                 of CH2 and mcNH angles to be compatible with ECEPP,
-                 and added option to permit all methyls to rotate.
-10/22/97 - jmw - fixed bug in rotation code which did not separate
-                 alternate conformations
-11/12/97 - jmw - support for flips of HIS and ASN/GLN residues,
-                 orientable waters and Hbonds to aromatics
-                 (includes some analysis of pairing of flips and rots)
-12/10/97 - jmw - fixed waters to have phantom H atoms,
-                 better rotational searching, metal covalent radii
- 2/ 7/98 - jmw - broke out motions and re-wrote search,
-                 use only A conf, fix penalty
- 2/18/98 - jmw - fixup ambiguous atom names, no creation of altB Hs,
-                 MTO waters, added -BUILD and other flags,
-                 better recognise S-S or C-O-C bonds, etc.
- 3/ 1/98 - jmw - fix orientations
- 3/25/98 - jmw - updated metal radii, added HET dict env var,
-                 expanded fixed orientations, changed -OH default
- 4/ 8/98 - jmw - fixed bug, occupancy of water phantomHs now > 0.0 !
- 4/18/98 - jmw - bad bump check, short water h, new limit on HB, ...
- 4/26/98 - jmw - new hires search strategy
- 4/29/98 - jmw - fixed min rotation angle and penalty bugs
- 5/13/98 - jmw - fixed another min rotation angle bug where the coarse score
-                 is the best that can be obtained. Also updated output to
-                 the header to document K/C/X/F categories.
- 5/15/98 - jmw - fine tuned cases where group is fixed by metal or modification
- 7/ 3/98 - jmw - fixed bug: ASN/GLN sc C=O carbon radii was 1.75, now 1.65
- 8/ 7/98 - jmw - stop putting notes in the segID, elem & charge fields
-                 because PDB use of these fields are now being expanded
-                 by naming convention differences with XPLOR and XPLORs
-                 use of SEGID rather than CHAINID
- 8/12/98 - jmw - changed how we figure num of permutations
- 8/14/98 - jmw - now search for het dictionary in current directory
- 9/ 1/98 - jmw - worked on portability by cleaning up g++ warnings
- 9/13/98 - jmw - figured out a work-around to g++ template and
-                 static const class initializer problems
- 1/ 7/99 - jmw - consolidate Linux and Mac changes with SGI src
- 3/16/99 - jmw - extended atom name parsing for wierd HETs with col1 ABCDEFGs
- 4/ 6/99 - jmw - added OW to list of names for oxygen in water
- 7/ 7/99 - jmw - Improved portability (near->nearr, List <T>::, Makefiles),
-                 made penalty 1.0, added reference, changed basic io hooks
- 9/ 2/99 - jmw - Updated Makefile list and Utility.h for DEC alpha support
-10/ 5/99 - jmw - Updated a Makefiles and the main in reduce.C for sgi6.5 compiler
- 8/ 4/00 - jmw - Added -segid flag to support segment identifiers
-10/30/00 - jmw - Modified Seq mergesort const/non const stuff
- 4/19/01 - jmw - Added support for left justified A/T/U/C/G for nucleic acids
-                 which fixed a rare but nasty bug in the water recognition
- 5/ 7/01 - jmw - Stopped output with -quiet while fixing orientation
-                 and finally dealt with string literal conversion messages
- 5/31/01 - jmw - Pass signal of abandoned clique search in rc,
-                 added new flag to allow mapping of segids to chains,
-                 changed properties of Nterminal fragment nitrogens to acceptor
-10/ 4/01 - jmw - fiddled to get compiled on RH linux 7 (gcc 2.96)
- 5/24/02 - jmw - added control over hbump
- 1/23/03 - jmw -v2.16 - Changed global MinChargedHBgap: 0.4 => 0.8
-                        Changed phosphorus properties to drop acceptor status
- 3/06/03 - jmw -v2.17 - Cleaning declarations found by Leo and Andrew such as
-                        adding compile flag -DOLD_CXX_DEFNS to select const longs
-                        instead of std::_Ios_Fmtflags in AtomPositions.C
- 3/31/03 - jmw -v2.18 - Fixed spelling mistake by renaming cuttoff to cutoff throughout.
-                        Edited help for -H2OBcutoff# to suggest an integer value
-                        Made -H2OOCCcutoff#.# parse a real (was integer)
- 4/ 3/03 - jmw -v2.19 - Moved -Help to the end of the command line parsing.
- 6/ 3/03 - jmw -v2.20 - updated to isoC++ style std includes: #include <cstring>,
-                        changed String class to Stringclass class,
-                        nice speedups from Jack Snoeyink
- 6/ 4/03 - jmw -v2.21 - added out for OLD_STD_HDRS for sgi plus other sgi polishing
-11/ 7/03 - jmw -v2.22 - fixed bug with creating hydrogens at the end of a triple bond
-                        and supressed the warnings about connecting nucleic acid bases
+reduce (4.13-1) unstable; urgency=medium
+  * Added an array element to avoid out-of-bounds use.
+  * Reverted the gap bug 'fix' from 4.11, going back to 4.7.
 
-040509dcr reduce.C ln 455: NO renumber, 1459: NO RXR msg
+reduce (4.12-1) unstable; urgency=medium
+  * Added an array element to avoid out-of-bounds use.
 
-041113dcr reduce.C reconstructed main to loop over any NMR models in the file
-          a specific model can still be specified.
+reduce (4.11-1) unstable; urgency=medium
+  * Fixed a gap bug introduced in version 4.7.
 
-changes
+reduce (4.10-1) unstable; urgency=medium
+  * Made atoms in the 5-membered ring in TRP not acceptors.
 
-050314 dcr incorporated Mike's version of 030703, to wit:
+reduce (4.9-1) unstable; urgency=medium
+  * Added a command-line argument to dump atom info (radius and flags) for debugging.
 
- 6/15/06 - apl -v3.0  - incorporated decomposition of scoring function into interactions of
-                        atom singles, atom pairs, atom tripples and all other
-                        higher-order atom interactions.  incorporated
-                        dynamic programming. incorporated changes from v2.21.mod_dcr
-                        disabling hydrogen atom numbering and skipInfo. removing
-                        PDBrecNAMEout as in v2.999. Disabling hydrogen bonds to his
-                        aromatic carbon atoms.
- 6/19/06 - apl -v3.01- decomposing the scoring function in terms of which dots should
-                       be scored with which hyperedges.  Incorporating S3 reduction rules
-                       into dynamic programming.  Incorporating code to handle 4-way overlap
-                       (but not five way overlap) though I have not observed any 4-way
-                       overlap using the new decomposition scheme (it would show up in the previous scheme).
- 6/24/06 - apl -v3.02- incorporating the additions to v2.23 that deal with multiple NMR models
-                       in a single file.  Altering output from dp to be less intrusive and a
-                       little more informative.
-                       Adding new reduction rule for vertices with exactly 1 state (i.e. no
-                       real options) which speeds up dynamic programming for the second-round
-                       of optimizations that calculate the optimal network states for sub-optimal
-                       flip states.  GLN and ASN will have 1 state in these optimizations.
-7/03/06 - apl -      - Fixing USER MOD Set ordering in output PDB.  Fixing 'flip' records in columns
-                       82 to 85 for the atoms on flipped residues.  Fixing atom placement plan bug
-                       in genHydrogens() that manifested itself as aberant behavior when presented
-                       with several (3 or more) alternate conformations.
-7/09/06 - apl -      - Adding #include <cassert> for gcc3.3.4 builds
-7/11/06 - apl -      - Fixing 'node with 0 states' bug.
-10/19/06 - apl - v3.03- changing HIS carbons to regular carbons and not arromatic carbons
-10/20/06 - apl -      - fixing bug in optimization code that failed to keep optimal network states
-                       when a network was forced to incur a penalty.
-3/ 7/07 - apl -        Bug fix: do not add hydrogens to 'N' on non-amino acids
-                       fixes 3H bug on SAC in 1b0b.pdb
-3/ 7/07 - apl -        Bug fix: march ResBlk::_insertPtr backwards at the end of constructor
-                       even when _insertPtr has reached the end of the rlst.  This ensures all
-                       residues are protonated, instead of all but the last one.  Fixes Loren's
-                       bug in trying to protonate nicotine when it was by itself in a .pdb.
-3/ 7/07 - apl -        inline distanceSquared in toolclasses/Point3d.h for a 10% speedup.
+reduce (4.8-1) unstable; urgency=medium
+  * Made C=O carbonyl radius 1.65 rather than 1.70, reverting the change made Oct 17 2012.
 
-7/ 7/07 - jjh & rmi -  incoporated new hydrogen names in StdResH.cpp for remediated pdb files
-               v3.10   followed the example of the -Xplor flag and added a -OLDpdb flag to allow
-                       output of new (default) or old (pre-remediation) hydrogen names
-7/13/07 - jjh & rmi -  added -BBmodel flag allows addition of hydrogens on Calpha of truncated
-                       amino acids
-7/16/07 - jjh & rmi -  added fixAtomName() to ElementInfo.cpp to check for Hg, Ho, and Hf atoms
-                       the corresponding warnings are no longer output
-7/31/07 - rmi -        Bug fix: changed the logic in selecting Xplor vs. PDBv2.3 vs. PDBv3.0 atom
-                       names in reduce.cpp and flipmemo.cpp. Updated the Version and shortVersion
-7/31/07 - rmi -        Bug fix: changed the logic in selecting Xplor vs. PDBv2.3 vs. PDBv3.0 atom
-                       names in reduce.cpp and flipmemo.cpp. Updated the Version and shortVersion
-                       strings and changed the year to the four digit year in the versionString.
-8/01/07 - rmi          Added the -Version and -Changes flags. The -Changes flag uses a new function
-                       reduceChanges and follows the format of reduceHelp
-                       Also commented out non-RNA non-DNA 'nucleic acids' from StdResH.cpp to fix
-                       doubling of backbone hydrogens.
-8/14/07 - rmi          Fixed bug in StdResH.cpp to add hydrogens on MSE. The change was to add SE
-                       as well as SED as the name for the selenium atom
-8/18/07 - rwgk         Patched Elementinfo.cpp for compiler problems: (a)Visual C++ warning and (b)Tru64 error
-svn rev 67, 68         (a)threw runtime error on fixAtomName() (b)added 'using std::sprintf'
-8/29/07 - rmi          Modified the reduce het dict so that hydrogens are not built on carboxylates
-                       added break-amide to StdResH to treat these amides as a special case
-10/3/07 - rmi          Added support for Hybrid36 atom and residue numbers
-11/1/07 - rmi          Added support for two character chainIds
-11/7/07 - rmi          Reverted changes to pdb_sscanf.cpp and changed write format for chains to %-2s
-11/14/07- rmi          Several BUG fixes:  in PDBrec.h getAtomDescr() wants seqNum not serialNum
-                         in AtomPositions.cpp change format to %-2.2s for two character chains
-                         fixed format strings in read_format.i and write_format.i
-                         explicitly added Hy36seqNum to pdb++.h
-02/14/08 - vbc & rmi   Bob's fixes for dealing with windows line ending files (no fix for mac files though).
-             & jjh       I (vbc) attempted to fix some of the warnings for new hydrogen names so molprobity isn't
-                         quite as swamped.
-02/20/08 - vbc & rmi   Fixed double H bug from Bob's previous correction
-02/28/08 - jmw & jjh   Fixed altID bug for H(alpha) when connecting atoms only non-blank altID and only one total conformation
-04/11/08 - jjh         Added -STRING flag to allow scripts in Perl/Python to pass a string to reduce for processing.  Output still directed to standard out.
-04/28/08 - jjh          fixed 4 character Deuterium recognition w/ PDB 3.0 names
-08/21/08 - jjh          added -CHARGEs flag to control charge state output - off by default
-11/06/09 - jjh         added -FLIP and -NOFLIP flag
-09/15/10 - wba         'reducer' versions are for evaluation of changes to H bond-distances
-11/18/11 - jjh         Overhauled handling of alternate conformers
-08/15/12 - aram        added -MAXAromdih cutoff to support rotating aromatic methyls
-2012/08/23 - lnd & vbc New, shorter, H bond distances and van der Waals - version 3.17
-2012/09/05 - gjk       New, shorter, H bond distances and van der Waals for nucleic acids
-2013/01/10 - jjh       Remove N-H atom from N-terminal residue of amino acid chain
-2013/01/16 - jjh       Added -NUCLEAR flag, which uses nuclear distances/vdW rather
-                         the default electron cloud distances/vdW for H placement
-2013/01/22 - jjh       fixed handling of group rotation for alternates
-2013/02/19 - wba       updated version number and date
-2013/03/26 - jjh       fixed bugs related to aromatic methyl rotations
-2013/03/27 - jjh v3.22 fixed bug where number of brute force node searches
-                        exceeded the system size of an int type
-2013/05/09 - jjh v3.23 support for segid instead of chainid added
-2013/05/20 - jjh       fixed -trim handling of H5'' atom in RNA
-2013/07/05 - jjh v3.24 fixed handling of ANISOU records when SEGIDs in use,
-                        and fixed removal of redundant N-terminal H atoms
-2013/07/11 - jjh       fixed calculation of neighbor atoms with invalidated records
-2013/07/11 - jjh       fixed enforcement of time limit for clique search
-2013/07/18 - jjh       fixed handling of multiple models when first model
-                        is not model 1
-2013/07/24 - jjh       cleaned up command line parsing function, removed redundant -FLIPs option
-2015/08/19 - sj        fixed multimodel handling. Header now printed only once, and
-                       everything else not within MODEL ENDMDL printed in the end
-2015/??    - v3.3, sj & cjw, New flip method to replace nqh_minimize
-2015/??    - bjh       test system
-2016/06/02 - cjw       set default behavior *not* to rotate methionine methyls, added -DOROTMET flag
-2020/10/07 - rmt       Added fine-grained command-line control over hydrogen drop/add and optimization
-2020/10/08 - rmt       Adjusted vector operations to enable running in debug compile
-2020/10/22 - sbstnk    Fix SIGUIJ output format
-2020/10/22 - sbstnk    Return code '2' for critical errors to distinguish from timeouts
-2020/10/29 - sbstnk    Avoid floating-point accuracy issues when doing some flips
-2020/11/03 - cjw       Updated het dictionary
-2020/11/19 - rmt       Verifies that atoms are valid before adjusting them
-2020/12/03 - rmt       Version 3.8 adds hydrogens on all alternates even if not adjusting
-2020/12/03 - rmt       Version 3.9 fixed bugs in abandoned-clique reporting
-2020/12/18 - rmt       Version 3.10 wraps the library for use in Python
-2021/01/04 - rmt       Version 4.0 removes the ability to rotate CH3 groups
-2021/01/10 - rmt       Version 4.1 removes -FLIP bug introduced in 3.10
-2021/01/12 - rmt       Version 4.2 speeds up processing of the HET database file
-2021/01/14 - rmt       Version 4.3 inserts optimization requests on existing hydrogens when not adding hydrogens
-2021/01/29 - rmt       Version 4.4 fixes a bug that kept aromatic methyl flips from being inserted since 2012
-2021/02/05 -           Version 4.5 adds -NOROTEXist and -NOROTEXOH command-line options and fixes SITE record numbers.
-2021/04/07 - rmt       Version 4.6 makes the default Probe radius 0.25 rather than 0.
-2021/04/16 - rmt       Version 4.7 fixes the distance calculation and neighborhood sizing when the probe radius is nonzero.
-2021/06/07 - rmt       Version 4.8 makes C=O carbonyl radius 1.65 rather than 1.70, reverting the change made Oct 17 2012.
-2021/08/17 - rmt       Version 4.9 adds a command-line argument to dump atom info (radius and flags) for debugging.
-2023/02/11 - rmt       Version 4.10 makes the atoms in the 5-membered ring in TRP not acceptors.
-2023/03/18 - rmt       Version 4.11 fixes a gap bug introduced in version 4.7.
-2023/06/05 - rmt       Version 4.12 adds an array element to avoid out-of-bounds use.
-2023/06/12 - rmt       Version 4.13 reverts the gap bug 'fix' from 4.11, going back to 4.7.
-2023/09/14 - rmt       Version 4.14 builds alongside the native CCTBX reduce2 library.
+reduce (4.7-1) unstable; urgency=medium
+  * Fixed the distance calculation and neighborhood sizing when the probe radius is nonzero.
+  * Made the default Probe radius 0.25 rather than 0.
+
+reduce (4.6-1) unstable; urgency=medium
+  * Added the -NOROTEXist and -NOROTEXOH command-line options.
+  * Fixed SITE record numbers.
+
+reduce (4.5-1) unstable; urgency=medium
+  * Added -NOROTEXist and -NOROTEXOH command-line options.
+  * Fixed SITE record numbers.
+
+reduce (4.4-1) unstable; urgency=medium
+  * Fixed a bug that kept aromatic methyl flips from being inserted since 2012.
+
+reduce (4.3-1) unstable; urgency=medium
+  * Inserted optimization requests on existing hydrogens when not adding hydrogens.
+
+reduce (4.2-1) unstable; urgency=medium
+  * Speeded up processing of the HET database file.
+
+reduce (4.1-1) unstable; urgency=medium
+  * Removed -FLIP bug introduced in 3.10.
+
+reduce (4.0-1) unstable; urgency=medium
+  * Removed the ability to rotate CH3 groups.
+
+reduce (3.10-1) unstable; urgency=medium
+  * Wrapped the library for use in Python.
+  * Fixed bugs in abandoned-clique reporting.
+
+reduce (3.9-1) unstable; urgency=medium
+  * Fixed bugs in abandoned-clique reporting.
+
+reduce (3.8-1) unstable; urgency=medium
+  * Added hydrogens on all alternates even if not adjusting.
+
+reduce (3.7-1) unstable; urgency=medium
+  * Verified that atoms are valid before adjusting them.
+
+reduce (3.6-1) unstable; urgency=medium
+  * Fixed SIGUIJ output format.
+  * Returned code '2' for critical errors to distinguish from timeouts.
+
+reduce (3.5-1) unstable; urgency=medium
+  * Avoided floating-point accuracy issues when doing some flips.
+
+reduce (3.4-1) unstable; urgency=medium
+  * Updated het dictionary.
+
+reduce (3.3-1) unstable; urgency=medium
+  * Added fine-grained command-line control over hydrogen drop/add and optimization.
+
+reduce (3.2-1) unstable; urgency=medium
+  * Fixed bugs related to aromatic methyl rotations.
+
+reduce (3.1-1) unstable; urgency=medium
+  * Updated version number and date.
+
+reduce (3.0-1) unstable; urgency=medium
+  * Incorporated decomposition of scoring function into interactions of atom singles, atom pairs, atom triples, and all other higher-order atom interactions.
+  * Incorporated dynamic programming and changes from v2.21.mod_dcr.
+  * Disabled hydrogen atom numbering and skipInfo. Removed PDBrecNAMEout.
+  * Disabled hydrogen bonds to his aromatic carbon atoms.
