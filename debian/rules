@@ -4,14 +4,14 @@
 	dh $@
 
 override_dh_auto_configure:
-	mkdir -p deb-build && cd deb-build && cmake ..
+	mkdir -p build && cd build && cmake ..
 
 override_dh_auto_build:
-	$(MAKE) -C deb-build
+	$(MAKE) -C build
 
 override_dh_auto_install:
-	$(MAKE) -C deb-build DESTDIR=$(CURDIR)/debian/reduce install
+	$(MAKE) -C build DESTDIR=$(CURDIR)/debian/reduce install
 
 override_dh_usrlocal:
 	mkdir -p $(CURDIR)/debian/reduce/usr/local
-	cp reduce_wwPDB_het_dict.txt $(CURDIR)/debian/reduce/usr/local/
+	cp reduce_wwPDB_het_dict.txt $(CURDIR)/debian/reduce/usr/local
