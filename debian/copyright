@@ -1,0 +1,11 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: reduce
+Source: https://github.com/rlabduke/reduce
+
+Files: *
+Copyright: 2024, Richardson Lab at Duke University
+License: BSD-4-Clause-UC
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the BSD License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
