@@ -1,7 +1,7 @@
 Source: reduce
 Section: science
 Priority: optional
-Maintainer: eunos-1128 <your.email@example.com>
+Maintainer: eunos-1128 <eunosium-1128@live.jp>
 Build-Depends: debhelper (>= 9), cmake, g++, make, libboost-python-dev, python3
 Standards-Version: 4.5.0
 Homepage: https://github.com/rlabduke/reduce
