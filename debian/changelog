@@ -1,6 +1,6 @@
-reduce (4.14) unstable; urgency=medium
+reduce (4.14+nmu1) bookworm; urgency=medium
 
-  * Initial release.
+  * Non-maintainer upload.
+  *
 
- -- UENO, M. <eunosium-1128@live.jp>  Wed, 31 Jul 2024 17:44:47 +0000
-
+ -- UENO, M. <eunosium-1128@live.jp>  Sat, 03 Aug 2024 15:51:42 +0900
