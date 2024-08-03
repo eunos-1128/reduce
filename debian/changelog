@@ -1,4 +1,4 @@
-reduce (4.14+nmu1) bookworm; urgency=medium
+reduce (4.14) bookworm; urgency=medium
 
   * Non-maintainer upload.
   *
