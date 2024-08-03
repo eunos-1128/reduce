@@ -4,7 +4,6 @@
 *.o
 reduce_src/reduce
 
-debian/
 DEBIAN/
 build/
 
